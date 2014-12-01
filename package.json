@@ -1,0 +1,28 @@
+{
+  "name": "random-shuffle",
+  "version": "1.0.0",
+  "description": "The shuffling algorithm that DOES NOT use Math.random()",
+  "main": "random-shuffle.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MattL922/random-shuffle.git"
+  },
+  "keywords": [
+    "random",
+    "shuffle",
+    "fisher-yates",
+    "knuth"
+  ],
+  "author": "Matt Loppatto <mattloppatto@gmail.com> (https://github.com/MattL922)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MattL922/random-shuffle/issues"
+  },
+  "homepage": "https://github.com/MattL922/random-shuffle",
+  "devDependencies": {
+    "mocha": "2.0.1"
+  }
+}
