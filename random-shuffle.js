@@ -8,23 +8,37 @@ var crypto = require("crypto");
 */
 function getRand(range)
 {
-  // This line could be sped up by using a lookup
-  var cutoff = Math.floor(65536 / range) * range - 1,
-      buf    = null;
-  try
+  // figure out how many bytes are needed to generate a number from [0, range)
+  var numBytes = 1;
+  while(Math.pow(2, numBytes * 8) < range)
   {
-    buf = crypto.randomBytes(2);
+    numBytes++;
   }
-  catch(err)
-  {
-    // Entropy source most likely drained.  Using psuedoRandomBytes.
-    buf = crypto.pseudoRandomBytes(2);
-  }
-  var num = buf.readUInt16BE(0);
+  var cutoff = Math.floor(Math.pow(2, numBytes * 8) / range) * range - 1,
+      buf    = null,
+      num    = cutoff + 1;
   // To avoid bias, throw out numbers that are greater than 'cutoff'
   // and pick again. The modulo here is unbiased because 'cutoff' is a
   // multiple of 'range'.
-  return (num > cutoff) ? getRand(range) : num % range;
+  while(num > cutoff)
+  {
+    try
+    {
+      buf = crypto.randomBytes(numBytes);
+    }
+    catch(err)
+    {
+      // Entropy source most likely drained.  Using psuedoRandomBytes.
+      buf = crypto.pseudoRandomBytes(numBytes);
+    }
+    // convert the contents of the buffer to an number
+    num = 0;
+    for(var i = 0; i < numBytes; i++)
+    {
+      num += (buf.readUInt8(i) << 8 * (numBytes - i - 1));
+    }
+  }
+  return num % range;
 }
 
 /**
@@ -49,3 +63,5 @@ module.exports = {
   getRand: getRand,
   shuffle: shuffle
 };
+
+getRand(500);
