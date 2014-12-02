@@ -42,7 +42,7 @@ function getRand(range)
 }
 
 /**
-* Shuffles the given array using the Fisher-Yates algorithm.
+* Shuffles the given array in place using the Fisher-Yates algorithm.
 *
 * @param {array} arr The array to shuffle
 * @returns {array} The shuffled array
@@ -63,5 +63,3 @@ module.exports = {
   getRand: getRand,
   shuffle: shuffle
 };
-
-getRand(500);
