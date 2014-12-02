@@ -10,7 +10,7 @@ function getRand(range)
 {
   // figure out how many bytes are needed to generate a number from [0, range)
   var numBytes = 1;
-  while(Math.pow(2, numBytes * 8) < range)
+  while(Math.pow(2, numBytes * 8) <= range)
   {
     numBytes++;
   }
