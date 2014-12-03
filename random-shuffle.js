@@ -1,14 +1,14 @@
 var crypto = require("crypto");
 
 /**
-* Generates a random number from 0 to range-1 inclusive.
+* Generates a random integer from 0 to range-1 inclusive.
 *
-* @param {number} range The max random number to generate (exclusive).
+* @param {number} range The max random integer to generate (exclusive).
 * @returns {number} An integer from the range [0, range-1].
 */
 function getRand(range)
 {
-  // figure out how many bytes are needed to generate a number from [0, range)
+  // figure out how many bytes are needed to generate an integer from [0, range)
   var numBytes = 1;
   while(Math.pow(2, numBytes * 8) <= range)
   {
