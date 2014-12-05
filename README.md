@@ -22,7 +22,7 @@ var arr = [123, "abc", {"field": "value"}];
 
 // shuffle an array
 
-rs.shuffle(x); // may return ["abc", {"field": "value"}, 123]
+rs.shuffle(arr); // may return ["abc", {"field": "value"}, 123]
 
 // or generate random numbers
 
